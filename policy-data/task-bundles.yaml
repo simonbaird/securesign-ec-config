@@ -1,0 +1,23 @@
+#
+# These are Tekton bundles containing custom tasks that we want EC to permit
+#
+# I'm creating these manually now, but ideally there should be some CI
+# triggered by whatever does the tkn bundle push to keep this data fresh.
+#
+# See also https://github.com/securesign/rekor/commit/b724cd24baecb4edc660638e3eb623dbfe77083c
+#
+task-bundles:
+  quay.io/securesign/rekor-unit-test:
+  - digest: sha256:e2713945aa7f1a14bd58a0c809691325fa8070cf6d0a0e476cc9e485cc680826
+    effective_on: 2023-10-19T00:00:00Z
+    tag: v2
+
+  quay.io/securesign/rekor-build-test-image:
+  - digest: sha256:44dade29f5022faff66eb552e1c1ba71698df8759b725f8550355ffcdd719709
+    effective_on: 2023-10-19T00:00:00Z
+    tag: latest
+
+  quay.io/securesign/rekor-e2e-test:
+  - digest: sha256:2ef6fbab2f49508db9b999315792655ce732b876085d88c82227db8bbff9ee19
+    effective_on: 2023-10-19T00:00:00Z
+    tag: latest
