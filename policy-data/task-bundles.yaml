@@ -1,10 +1,25 @@
 #
-# These are Tekton bundles containing custom tasks that we want EC to permit
+# These are Tekton bundles containing custom tasks that we want EC to permit.
+# The format is what EC uses to determine what tasks are considered trusted.
 #
 # I'm creating these manually now, but ideally there should be some CI
 # triggered by whatever does the tkn bundle push to keep this data fresh.
 #
-# See also https://github.com/securesign/rekor/commit/b724cd24baecb4edc660638e3eb623dbfe77083c
+# See also:
+# * Related documentation:
+#   https://enterprisecontract.dev/docs/ec-policies/trusting_tasks.html#_adding_a_custom_task_to_the_trusted_task_list
+#
+# * The readme and the policy.yaml file here:
+#   https://github.com/simonbaird/securesign-ec-config/tree/main
+#
+# * Additional examples here including how to specify trusted git references:
+#   https://github.com/enterprise-contract/ec-policies/blob/main/example/data/trusted_tekton_tasks.yml
+#
+# * The `ec track bundle` command:
+#   https://enterprisecontract.dev/docs/ec-cli/main/ec_track_bundle.html
+#
+# * A commit removing the custom task used in this example:
+#   https://github.com/securesign/rekor/commit/b724cd24baecb4edc660638e3eb623dbfe77083c
 #
 trusted_tasks:
   oci://quay.io/securesign/rekor-unit-test:v2:

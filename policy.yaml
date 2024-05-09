@@ -4,8 +4,10 @@ name: Secure Sign Custom Enterprise Contract Policy
 description: >-
   Based on the standard Red Hat (non hermetic) policy
   (see https://github.com/enterprise-contract/config/blob/main/redhat-no-hermetic/policy.yaml)
-  but with one additional data source. Currently this is an experimental POC,
-  see https://issues.redhat.com/browse/EC-147 .
+  but with one additional data source providing additional trusted tasks. Currently this is a POC
+  demonstrating how to provide additional trusted task references for EC. It's based on a real
+  world example from the securesign team, but not actually used for real. Created originally
+  for https://issues.redhat.com/browse/EC-147 .
 
 publicKey: "k8s://openshift-pipelines/public-key"
 
@@ -16,10 +18,16 @@ sources:
       - github.com/enterprise-contract/ec-policies//policy/release
 
     data:
+      # Contains the standard list of Konflux trusted tasks
+      # To inspect it:
+      #   ec inspect policy-data --source quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles | yq -P
       - oci::quay.io/redhat-appstudio-tekton-catalog/data-acceptable-bundles:latest
+
+      # See https://github.com/release-engineering/rhtap-ec-policy/tree/main/data
       - github.com/release-engineering/rhtap-ec-policy//data
 
-      # This is the one additional data source
+      # This is the additional custom data source containing a list of task
+      # references that are also considered trusted under the `trusted_tasks` top level key.
       # See https://github.com/simonbaird/securesign-ec-config/tree/main/policy-data
       - github.com/simonbaird/securesign-ec-config//policy-data?ref=main
 
